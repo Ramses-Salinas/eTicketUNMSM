@@ -1,0 +1,122 @@
+body {
+  background-color: #7C0000;
+  font-family: 'Poppins', sans-serif;
+  font-style: normal;
+  color: #ffffff;
+  margin: 0;
+  padding: 0;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 85vh;
+  padding: 24px;
+  flex-direction: column;
+  float: right;
+}
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 20px;
+}
+.inputs .input-field {
+  width: 70%;
+  margin-top: 10px;
+}
+.inputs div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.input-field {
+  margin-top: 10px;
+  width: 55%;
+}
+.input-field label {
+  display: block;
+  font-size: 13px;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+.input-field input {
+  background:#212121;
+  width: 110%;
+  height: 22px;
+  padding: 8px;
+  font-size: 13px;
+  border-radius: 10px;
+}
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  width: 60%;
+  margin-top: 20px;
+  gap: 34px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 70px;
+  text-decoration: none;
+}
+.button-register,
+.button-guardar,
+.button-login {
+  flex-grow: 1;
+  display: block;
+  width: 332px;
+  height: 67px;
+  background: #142232  ;
+  color: #ffffff;
+  border-radius: 24px;
+  text-decoration: none;
+  cursor: pointer;
+}
+.login-imagen {
+  display: flex;
+  width: 50%;
+}
+.button-cancel {
+  background: #142232;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  width: 332px;
+  height: 67px;
+  border-radius: 24px;
+  color: #ffffff;
+  text-decoration: none;
+  cursor: pointer;
+}
+#button-cerrarsesion {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #d8dfe8;
+  color: #0a3871;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#button-cerrarsesion:hover {
+  background-color: #0a3871;
+  color: #ffffff;
+}
+
+h1 {
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+p {
+  color: #ffffff;
+  font-size: 18px;
+  margin-bottom: 40px;
+}
