@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Menú del día</title>
+    <style>
+        .menu-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .menu-title {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .menu-section {
+            margin-bottom: 20px;
+        }
+
+        .menu-section-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .menu-item {
+            margin-bottom: 5px;
+        }
+
+        .menu-image {
+            max-width: 200px;
+            max-height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="menu-container">
+        <h1 class="menu-title">Menú del día</h1>
+        <div id="menu"></div>
+    </div>
+
+    <script>
+        // Realiza una petición al microservicio Flask para obtener el menú del día
+        fetch('http://localhost:5000/menu')
+            .then(response => response.json())
+            .then(data => {
+                // Verifica si se encontró el menú
+                if (data.mensaje) {
+                    document.getElementById('menu').textContent = data.mensaje;
+                } else {
+                    // Construye la estructura HTML del menú
+                    const menuHTML = `
+                            <div class="menu-section">
+                                <h2 class="menu-section-title">Desayuno</h2>
+                                <div class="menu-item">Bebida: ${data.desayuno.bebida}</div>
+                                <div class="menu-item">Fruta: ${data.desayuno.fruta}</div>
+                                <div class="menu-item">Acompañamiento: ${data.desayuno.acompanamiento}</div>
+                                <img class="menu-image" src="data:image/jpeg;base64,${data.desayuno.imagen_desayuno}">
+                            </div>
+                            <div class="menu-section">
+                                <h2 class="menu-section-title">Almuerzo</h2>
+                                <div class="menu-item">Entrada: ${data.almuerzo.entrada}</div>
+                                <div class="menu-item">Refresco: ${data.almuerzo.refresco}</div>
+                                <div class="menu-item">Plato Fondo: ${data.almuerzo.plato_fondo}</div>
+                                <div class="menu-item">Fruta: ${data.almuerzo.fruta}</div>
+                                <img class="menu-image" src="data:image/jpeg;base64,${data.almuerzo.imagen_almuerzo}">
+                            </div>
+                            <div class="menu-section">
+                                <h2 class="menu-section-title">Cena</h2>
+                                <div class="menu-item">Plato Fondo: ${data.cena.plato_fondo}</div>
+                                <div class="menu-item">Refresco: ${data.cena.refresco}</div>
+                                <div class="menu-item">Postre: ${data.cena.postre}</div>
+                                <img class="menu-image" src="data:image/jpeg;base64,${data.cena.imagen_cena}">
+                            </div>
+                        `;
+
+                    // Agrega el menú al elemento con el id "menu"
+                    document.getElementById('menu').innerHTML = menuHTML;
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    </script>
+</body>
