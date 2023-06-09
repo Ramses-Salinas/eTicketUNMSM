@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Crear nueva cuenta</title>
+    <style>
+        body {
+            background: linear-gradient(0deg, #7C0000, #7C0000);
+            color: white;
+        }
+
+        .register-container {
+            width: 300px;
+            margin: 0 auto;
+            margin-top: 100px;
+            text-align: center;
+        }
+
+            .register-container input[type="text"],
+            .register-container input[type="email"],
+            .register-container input[type="password"] {
+                width: 100%;
+                padding: 10px;
+                margin-bottom: 20px;
+                background-color: #212121;
+                border: none;
+                color: white;
+            }
+
+            .register-container input[type="submit"] {
+                background-color: #142232;
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                cursor: pointer;
+            }
+    </style>
+</head>
+<body>
+    <div class="register-container">
+        <h2 style="text-align: center;">Crear nueva cuenta</h2>
+        <form>
+            <input type="text" placeholder="Nombre" required>
+            <input type="text" placeholder="Apellido" required>
+            <input type="text" placeholder="Código" required>
+            <input type="text" placeholder="Facultad" required>
+            <input type="text" placeholder="Escuela" required>
+            <input type="text" placeholder="Correo" required>
+            <input type="text" placeholder="Contaseña" required>
+            <input type="email" placeholder="Correo" required>
+            <input type="password" placeholder="Contraseña" required>
+            <input type="password" placeholder="Confirmar Contraseña" required>
+            <input type="submit" value="Registrarse">
+        </form>
+    </div>
+</body>
+</html>

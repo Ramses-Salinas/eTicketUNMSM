@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bienvenido a eTicketUNMSM</title>
+    <style>
+        body {
+            background: linear-gradient(0deg, #7C0000, #7C0000);
+            color: white;
+        }
+
+        .login-container {
+            width: 300px;
+            margin: 0 auto;
+            margin-top: 100px;
+            text-align: center;
+        }
+
+            .login-container input[type="text"],
+            .login-container input[type="password"] {
+                width: 100%;
+                padding: 10px;
+                margin-bottom: 20px;
+                background-color: #212121;
+                border: none;
+                color: white;
+            }
+
+            .login-container input[type="submit"] {
+                background-color: #142232;
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                cursor: pointer;
+            }
+
+        .register-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+            .register-link a {
+                color: white;
+                text-decoration: none;
+            }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2 style="text-align: center;">Bienvenido a eTicketUNMSM</h2>
+
+        <form>
+            <input id="codeInput" type="text" placeholder="Código" required>
+            <input id="passwordInput" type="password" placeholder="Contraseña" required>
+            <div class="register-link">
+                <p>Si no tienes una cuenta, puedes <a href="#">registrarte aquí</a>.</p>
+            </div>
+            <input id="loginButton" type="submit" value="Iniciar sesión">
+        </form>
+        <div id="errorMessage" style="color: red; margin-top: 10px;"></div>
+    </div>
+
+    <script>
+        document.getElementById("loginButton").addEventListener("click", function (event) {
+            event.preventDefault();
+
+            var code = document.getElementById("codeInput").value;
+            var password = document.getElementById("passwordInput").value;
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "http://localhost:2028/api/usuarios/login", true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+
+            var payload = {
+                code: code,
+                password: password
+            };
+            xhr.send(JSON.stringify(payload));
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    console.log(response);
+
+                    if (response === true) {
+                        window.location.href = "mainContent.html";
+                    } else {
+                        var errorMessage = document.getElementById("errorMessage");
+                        errorMessage.textContent = "Credenciales inválidas. Por favor, intenta nuevamente.";
+                    }
+                } else {         
+                    console.error("Error: " + xhr.status);
+                }
+            };
+        });
+    </script>
+</body>
+</html>

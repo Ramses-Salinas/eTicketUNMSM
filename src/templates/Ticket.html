@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ticket Reservado</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: white;
+            color: black;
+        }
+
+        .sidebar {
+            width: 200px;
+            height: 100vh;
+            background-color: #7C0000;
+            color: white;
+            padding: 20px;
+            box-sizing: border-box;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+
+            .sidebar ul {
+                list-style-type: none;
+                padding: 0;
+                margin: 0;
+            }
+
+            .sidebar li {
+                margin-bottom: 10px;
+            }
+
+            .sidebar a {
+                text-decoration: none;
+                color: white;
+            }
+
+        .content {
+            margin-left: 200px;
+            padding: 20px;
+        }
+
+        .ticket-block {
+            background-color: #D9D9D9;
+            padding: 20px;
+            color: black;
+            margin-bottom: 20px;
+        }
+
+        .ticket-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .ticket-title {
+            font-weight: bold;
+        }
+
+        .qr-code {
+            max-width: 100%;
+            height: auto;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <ul>
+            <li><a href="#">🏠 Home</a></li>
+            <li><a href="#">🎟️ Ticket</a></li>
+            <li><a href="#">🔒 Logout</a></li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <h1>Ticket Reservado</h1>
+        <p>Date: [Current Date]</p>
+
+        <div class="ticket-block">
+            <div class="ticket-info">
+                <div class="ticket-title">UNIVERSIDAD NACIONAL MAYOR DE SAN MARCOS</div>
+                <div class="ticket-title">Nro Ticket</div>
+            </div>
+
+            <div class="ticket-info">
+                <div class="ticket-title">TIPO DE COMIDA: [ALMUERZO/DESAYUNO/CENA]</div>
+
+            </div>
+            <div class="ticket-info">
+                <div class="ticket-title">[Fecha de Hoy] - [Hora del Turno de la Comida]</div>
+            </div>
+            
+            <div class="ticket-info">
+                <div class="ticket-title">[Nombres y Apellidos de los Estudiantes]</div>
+                <img class="qr-code" src="[QR Code Image URL]">
+            </div>
+            <div class="ticket-info">
+                <div class="ticket-title">[Código de Estudiante]</div>
+            </div>
+            
+
+            <div class="ticket-info">
+                <div class="ticket-title">Nivel: [x]</div>
+                <div class="ticket-title">Turno: [x]</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Comedor Universitario - Menú</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .sidebar {
+            width: 200px;
+            height: 100vh;
+            background-color: #7C0000;
+            color: white;
+            padding: 20px;
+            box-sizing: border-box;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+
+            .sidebar ul {
+                list-style-type: none;
+                padding: 0;
+                margin: 0;
+            }
+
+            .sidebar li {
+                margin-bottom: 10px;
+            }
+
+            .sidebar a {
+                text-decoration: none;
+                color: white;
+            }
+
+        .content {
+            margin-left: 200px;
+            padding: 20px;
+            background-color: white;
+            color: black;
+            height: 100vh;
+            overflow-y: scroll;
+        }
+
+        .menu-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .menu-block {
+            margin-bottom: 20px;
+        }
+
+        .menu-block-title {
+            background-color: #7C0000;
+            color: white;
+            padding: 10px;
+            font-weight: bold;
+        }
+
+        .menu-block-content {
+            padding: 10px;
+        }
+
+        .reservation-button {
+            background-color: #7C0000;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .info-block {
+            margin-top: 20px;
+            color: black;
+        }
+
+        .menu-section {
+            display: grid;
+            grid-template-rows: auto 1fr auto auto;
+            margin-bottom: 20px;
+        }
+
+        .menu-section-title {
+            background-color: #7C0000;
+            color: white;
+            padding: 10px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .menu-item {
+            margin-bottom: 5px;
+        }
+
+        .menu-image {
+            max-width: 100%;
+            height: auto;
+            margin-top: 10px;
+        }
+
+        .menu-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 10px;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <ul>
+            <li><a href="#">🏠 Home</a></li>
+            <li><a href="#">🎟️ Ticket</a></li>
+            <li><a href="#">🔒 Logout</a></li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <h1>Comedor Universitario - Menú</h1>
+
+        <div id="menu" class="menu-container"></div>
+        
+        <script>
+            fetch('/menu')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.mensaje) {
+                        document.getElementById('menu').textContent = data.mensaje;
+                    } else {
+                        const menuHTML = `
+                            <div class="menu-section">
+                                <h2 class="menu-section-title">Desayuno</h2>
+                                <div class="menu-item">Bebida: ${data.desayuno.bebida}</div>
+                                <div class="menu-item">Fruta: ${data.desayuno.fruta}</div>
+                                <div class="menu-item">Acompañamiento: ${data.desayuno.acompanamiento}</div>
+                                <button class="reservation-button">Reservar ticket</button>
+                            </div>
+                            <div class="menu-section">
+                                <h2 class="menu-section-title">Almuerzo</h2>
+                                <div class="menu-item">Entrada: ${data.almuerzo.entrada}</div>
+                                <div class="menu-item">Refresco: ${data.almuerzo.refresco}</div>
+                                <div class="menu-item">Plato Fondo: ${data.almuerzo.plato_fondo}</div>
+                                <div class="menu-item">Fruta: ${data.almuerzo.fruta}</div>
+                                <button class="reservation-button">Reservar ticket</button>
+                            </div>
+                            <div class="menu-section">
+                                <h2 class="menu-section-title">Cena</h2>
+                                <div class="menu-item">Plato Fondo: ${data.cena.plato_fondo}</div>
+                                <div class="menu-item">Refresco: ${data.cena.refresco}</div>
+                                <div class="menu-item">Postre: ${data.cena.postre}</div>
+                                <button class="reservation-button">Reservar ticket</button>
+                            </div>
+                        `;
+                        document.getElementById('menu').innerHTML = menuHTML;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        </script>
+
+
+        <div class="info-block">
+            <h2>HORARIO DE ATENCIÓN AL COMEDOR:</h2>
+            <p>DESAYUNO: Desde las 7 am (SIN TICKET)</p>
+            <p>ALMUERZO: De 12 pm a 1:40 pm (CON TICKET)</p>
+            <p>CENA: Desde las 5 p.m (CON TICKET)</p>
+        </div>
+
+        <div class="info-block">
+            <h2>HORARIO DE ENTREGA DE TICKETS**:</h2>
+            <p>PARA ALMUERZO: Desde las 7:30 am</p>
+            <p>Para Cena: Desde las 2:00 pm</p>
+            <p>**Los tickets se entregan en el segundo piso del Comedor</p>
+        </div>
+    </div>
+</body>
+</html>
